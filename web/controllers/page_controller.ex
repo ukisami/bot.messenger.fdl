@@ -12,14 +12,12 @@ defmodule FdlMessengerBot.PageController do
     text conn, challenge
   end
 
-  def webhook(conn, %{
-    "object": object,
-    "entry": entry
-  }) do
+  def webhook(conn, %{"entry" => entry}) do
     page_access_token = System.get_env("FACEBOOK_PAGE_ACCESS_TOKEN")
-    IO.inspect(entry)
-    IO.inspect(entry["messaging"])
+    messaging = hd(entry)["messaging"]
+    message = hd(messaging)["message"]["text"]
     IO.inspect(page_access_token)
-    text conn, "hello"
+    IO.inspect(message)
+    text conn, message
   end
 end
