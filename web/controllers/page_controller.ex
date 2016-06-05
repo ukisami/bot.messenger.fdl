@@ -17,12 +17,12 @@ defmodule FdlMessengerBot.PageController do
     IO.inspect(entry)
     messaging = hd(entry)["messaging"]
     message = hd(messaging)["message"]["text"]
-    user_id = messaging["sender"]["id"]
+    # user_id = messaging["sender"]["id"]
     IO.inspect(page_access_token)
     IO.inspect(message)
-    MessengerAPI.start
-    FdlMessengerBot.MessengerAPI.start
-    FdlMessengerBot.MessengerAPI.postMessage(%{:user_id => user_id, :message => message})
+    # MessengerAPI.start
+    # FdlMessengerBot.MessengerAPI.start
+    # FdlMessengerBot.MessengerAPI.postMessage(%{:user_id => user_id, :message => message})
     text conn, :ok
   end
 end
