@@ -2,15 +2,21 @@ defmodule FdlMessengerBot.MessengerAPI do
   use HTTPoison.Base
 
   def process_url(endpoint) do
-    api_url(endpoint)
+    url = api_url(endpoint)
+    IO.puts url
+    url
   end
 
   def process_request_headers(headers) do
     [{"content-type", "application/json"} | headers]
   end
 
+  def process_request_body(body) do
+    Poison.encode!(body)
+  end
+
   def postMessage(%{:user_id => user_id, :message => message}) do
-    post("messages", [{"recipient", [{"id", user_id}]}, {"message", []}])
+    post("messages", %{"recipient" => %{"id" => user_id}, "message" => %{"text" => message}})
   end
 
   defp api_url(endpoint) do
