@@ -17,7 +17,7 @@ defmodule FdlMessengerBot.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {FdlMessengerBot, []},
-     applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext]]
+     applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext, :httpoison]]
   end
 
   # Specifies which paths to compile per environment.
@@ -32,6 +32,7 @@ defmodule FdlMessengerBot.Mixfile do
      {:phoenix_html, "~> 2.4"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.9"},
-     {:cowboy, "~> 1.0"}]
+     {:cowboy, "~> 1.0"},
+     {:httpoison, "~> 0.8.0"}]
   end
 end
