@@ -14,6 +14,7 @@ defmodule FdlMessengerBot.PageController do
 
   def webhook(conn, %{"entry" => entry}) do
     page_access_token = System.get_env("FACEBOOK_PAGE_ACCESS_TOKEN")
+    IO.inspect(entry)
     messaging = hd(entry)["messaging"]
     message = hd(messaging)["message"]["text"]
     IO.inspect(page_access_token)
