@@ -13,17 +13,12 @@ defmodule FdlMessengerBot.PageController do
   end
 
   def webhook(conn, %{"entry" => entry}) do
-    page_access_token = System.get_env("FACEBOOK_PAGE_ACCESS_TOKEN")
-
     messaging = hd(hd(entry)["messaging"])
     message = messaging["message"]["text"]
     user_id = messaging["sender"]["id"]
 
-    IO.inspect("sender: #{user_id} - #{message}")
-
-    # MessengerAPI.start
-    # FdlMessengerBot.MessengerAPI.start
-    # FdlMessengerBot.MessengerAPI.postMessage(%{:user_id => user_id, :message => message})
+    FdlMessengerBot.MessengerAPI.start
+    FdlMessengerBot.MessengerAPI.postMessage(%{:user_id => user_id, :message => message})
     text conn, :ok
   end
 end
